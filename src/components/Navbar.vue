@@ -38,6 +38,7 @@
         name: 'Navbar',
         methods: {
             goToHome() {
+                this.$store.dispatch("getRoot");
                 this.$router.push('/');
             },
             goPreFolder() {

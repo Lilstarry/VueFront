@@ -2,11 +2,11 @@ import {api} from "./api";
 
 export default {
     delete: (id) => {
-        return api().delete("catalogs/" + id);
+        return api().delete(`catalogs/${id}`);
     },
 
     edit: (id, title, directory) => {
-        return api().put("catalogs/" + id, JSON.stringify({title, directory}));
+        return api().put(`catalogs/${id}`, JSON.stringify({title, directory}));
     },
 
     create: (title, directory) => {
@@ -22,6 +22,6 @@ export default {
     },
 
     getFiles: (id) => {
-        return api().get("catalogs/getmessages/" + id);
+        return api().get(`catalogs/getmessages/${id}`);
     }
 }

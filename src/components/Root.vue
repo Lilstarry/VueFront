@@ -9,18 +9,12 @@ import folderInstance from "./folderInstance"
 export default {
     name: "root",
     components: {folderInstance},
-    mounted() {
-        this.$store.dispatch("getRoot");
-    },
+    mounted() { this.$store.dispatch("getRoot"); },
     methods: {
-        update() {
-            
-        }
+        update() {}
     },
     computed: {
-        rootFolder() {
-            return this.$store.getters.root;
-        }
+        rootFolder() { return this.$store.getters.root; }
     }
 }
 </script>

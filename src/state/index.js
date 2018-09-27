@@ -46,12 +46,13 @@ const actions= {
     getFiles: async(context, payload) => {
         const getFoldersResult = await directory.getFiles()
             .then(response => {
-                console.log("Got folders");
+                context.state.files = response.data;
+                console.log("Got files");
             })
             .catch(error => {
                 console.log("Failed to get folders");
             });
-    }
+    },
 }
 
 const mutations= {

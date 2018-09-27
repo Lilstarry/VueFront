@@ -14,7 +14,7 @@
                             <form>
                                 <div class="form-group">
                                     <label for="InputTitle">Enter file's title</label>
-                                    <input type="title" class="form-control" id="InputTextTitle" placeholder="Title" required>
+                                    <input v-model="fileTitle" type="title" class="form-control" id="InputTextTitle" placeholder="Title" required>
                                 </div>
                                 <button @click="createFile()" type="submit" class="btn btn-primary" id="btn-createText" data-dismiss="modal">Create</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -28,23 +28,23 @@
 </template>
 
 <script>
-import message from "../services/files";
+import file from "../services/files";
 export default {
     name: 'AddTextModal',
     data: () => ({
         fileTitle: ""
     }),
     methods: {
-        // async createFile() {
-        //     const createResult = message.create("", this.$route.params.id, this.folderTitle)
-        //     .then(response => {
-        //         console.log("xyRce");
-        //         this.$route.dispatch("user/LOAD_FILES", this.$route.params.id);
-        //     })
-        //     .catch(error => {
-        //         console.log("New file error");
-        //     })
-        // }
+        async createFile() {
+            const createResult = await file.create(this.fileTitle, this.$route.params.id)
+                .then(response => {
+                    if(this.$route.params.id) this.$store.dispatch("getFiles", this.$route.params.id);
+                    else this.$store.dispatch("getRoot");
+                })
+                .catch(error => {
+                    console.log("New files error");
+                })
+        }
     }
 }
 </script>
