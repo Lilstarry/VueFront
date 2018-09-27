@@ -13,7 +13,8 @@ export default new Router({
       path: '/folder/:id',
       component: Folder,
       beforeRouteUpdate (to, from, next) {
-        next();
+        if(true) next();
+        else next(false);
       },
     }
   ]
